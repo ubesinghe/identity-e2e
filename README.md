@@ -65,26 +65,18 @@ sudo yum install telnet -y
 ###### Docker build/run for frontend service 
 ```
 git clone git@github.com:ubesinghe/e2e-frontend-app.git
- 
 cd e2e-frontend-app/
- 
 docker build -t fronted-app:1.0 . 
-
 docker images
-
 docker run -d -p 80:8080 frontend-app:1.0
 ```
 ###### Docker build/run for backend service
 
 ```
 git clone git@github.com:ubesinghe/e2e-backend-app.git
- 
 cd e2e-backend-app/
- 
 docker build -t backend-app:1.0 . 
-
 docker images
-
 docker run -d -p 80:8080 backend-app:1.0
 ```
 
