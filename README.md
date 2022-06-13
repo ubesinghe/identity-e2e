@@ -23,7 +23,25 @@ In order to cater the user  demand and to get maximum cost benefits of the AWS c
 Launch configurations have been used to run EC2 instances via Auto scaling groups. Launch configurations contain the Amazon Machine Images, Instance type, key pair, security groups and User data. 
  
 The reason behind using a docker container is that it is a portable computing environment. It contains everything an application needs to run. Unlike a VM, which relies on a virtualized operating system and a hypervisor software layer, containerization offers applications direct access to computing resources without extra software layers. Containerization also allows for improved security and easier management. 
+
+
+## DynamoDB table
  
+I have created a DynamoDB table using the following document. DB was created using AWS CLI. This can be implemented using Terraform or any automation tools. This is connected to AWS resources using DynamoDB IAM policies.
+ 
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-1.html
+ 
+```
+aws dynamodb create-table \
+   --table-name UserCheckin \
+   --attribute-definitions \
+       AttributeName=Username,AttributeType=S \
+   --key-schema \
+       AttributeName=Username,KeyType=HASH \
+   --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
+   --region eu-west-2
+```
+
 ## How to install docker in amazon linux2 EC2 Instance
  
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html
@@ -42,45 +60,38 @@ docker info
 
 ```
 sudo yum install git -y
-sudo yum -y install telnet
+sudo yum install telnet -y
  
 ```
  
-## get the "Dockerfile" from github repo and build the docker image
+## Get the "Dockerfile" from github repo, build/run the docker image.
  
+###### Docker build/run for frontend service 
 ```
 git clone git@github.com:ubesinghe/e2e-frontend-app.git
  
-ls
 cd e2e-frontend-app/
-ls
-```
- 
-## Build the Docker image from your Dockerfile.
- 
-```
-cd e2e-frontend-app 
-ls 
  
 docker build -t fronted-app:1.0 . 
-docker images
-```
 
-## Dynamodb table
- 
-I have created a Dynamodb table using the following document. DB was created using AWS CLI. This can be implemented using Terraform or any automation tools. This is connected to AWS resources using DynamoDB IAM policies.
- 
-https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-1.html
- 
+docker images
+
+docker run -d -p 80:8080 frontend-app:1.0
+
 ```
-aws dynamodb create-table \
-   --table-name UserCheckin \
-   --attribute-definitions \
-       AttributeName=Username,AttributeType=S \
-   --key-schema \
-       AttributeName=Username,KeyType=HASH \
-   --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
-   --region eu-west-2
+###### Docker build/run for backend service
+
+```
+git clone git@github.com:ubesinghe/e2e-backend-app.git
+ 
+cd e2e-backend-app/
+ 
+docker build -t backend-app:1.0 . 
+
+docker images
+
+docker run -d -p 80:8080 backend-app:1.0
+
 ```
 
 ## To veryfy the connectivity between frontend docker and backend load balancer 
