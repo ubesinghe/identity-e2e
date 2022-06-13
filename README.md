@@ -43,17 +43,14 @@ aws dynamodb create-table \
 ```
 
 ## How to install docker in amazon linux2 EC2 Instance
- 
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html
- 
-```
- 
+
+``` 
 sudo yum update -y
 sudo amazon-linux-extras install docker -y
 sudo service docker start
 sudo usermod -a -G docker ec2-user
 docker info
- 
 ``` 
  
 ## Installing other necessary packages.
@@ -61,7 +58,6 @@ docker info
 ```
 sudo yum install git -y
 sudo yum install telnet -y
- 
 ```
  
 ## Get the "Dockerfile" from github repo, build/run the docker image.
@@ -77,7 +73,6 @@ docker build -t fronted-app:1.0 .
 docker images
 
 docker run -d -p 80:8080 frontend-app:1.0
-
 ```
 ###### Docker build/run for backend service
 
@@ -91,7 +86,6 @@ docker build -t backend-app:1.0 .
 docker images
 
 docker run -d -p 80:8080 backend-app:1.0
-
 ```
 
 ## To verify the connectivity between frontend docker and backend load balancer 
