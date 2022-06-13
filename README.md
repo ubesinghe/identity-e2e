@@ -56,7 +56,7 @@ docker info
  
 ``` 
  
-## Installing other necessary packages supported for amazon Linux2
+## Installing other necessary packages.
 
 ```
 sudo yum install git -y
