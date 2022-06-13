@@ -106,7 +106,7 @@ env | grep BACKEND_URL
 ``` 
 However, this should be automated as a further enhancement.
 
-###### Possible Optimizations and Learnings of the exercise.
+## Possible Optimizations and Learnings of the exercise.
  
 Some of the configurations are managed through the user data. However, Ansible is the best option for application related configuration management.
 
