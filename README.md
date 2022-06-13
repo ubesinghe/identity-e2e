@@ -24,7 +24,7 @@ Launch configurations have been used to run EC2 instances via Auto scaling group
  
 The reason behind using a docker container is that it is a portable computing environment. It contains everything an application needs to run. Unlike a VM, which relies on a virtualized operating system and a hypervisor software layer, containerization offers applications direct access to computing resources without extra software layers. Containerization also allows for improved security and easier management. 
  
-###### How to install docker in amazon linux2 EC2 Instance
+## How to install docker in amazon linux2 EC2 Instance
  
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html
  
@@ -38,7 +38,7 @@ docker info
  
 ``` 
  
-###### Installing other necessary packages supported for amazon Linux2
+## Installing other necessary packages supported for amazon Linux2
 
 ```
 sudo yum install git -y
@@ -46,7 +46,7 @@ sudo yum -y install telnet
  
 ```
  
-###### get the "Dockerfile" from github repo and build the docker image
+## get the "Dockerfile" from github repo and build the docker image
  
 ```
 git clone git@github.com:ubesinghe/e2e-frontend-app.git
@@ -56,7 +56,7 @@ cd e2e-frontend-app/
 ls
 ```
  
-###### Build the Docker image from your Dockerfile.
+## Build the Docker image from your Dockerfile.
  
 ```
 cd e2e-frontend-app 
@@ -66,7 +66,7 @@ docker build -t fronted-app:1.0 .
 docker images
 ```
 
-###### Dynamodb table
+## Dynamodb table
  
 I have created a Dynamodb table using the following document. DB was created using AWS CLI. This can be implemented using Terraform or any automation tools. This is connected to AWS resources using DynamoDB IAM policies.
  
@@ -83,7 +83,7 @@ aws dynamodb create-table \
    --region eu-west-2
 ```
 
-###### To veryfy the connectivity between frontend docker and backend load balancer 
+## To veryfy the connectivity between frontend docker and backend load balancer 
  
 ```
 telnet internal-backend-lb-1214632732.eu-west-2.elb.amazonaws.com 5000
@@ -91,7 +91,7 @@ telnet internal-backend-lb-1214632732.eu-west-2.elb.amazonaws.com 5000
 curl internal-backend-lb-1214632732.eu-west-2.elb.amazonaws.com:5000/api/v1/get
 ```
 
-###### Enabeling the communication in between frontend and backend services
+## Enabeling the communication in between frontend and backend services
 
 Configure the frontend microservice to send traffic to the backend microservice therefore we need to get the backend interal load balancer to expose to the frontend service.
 
