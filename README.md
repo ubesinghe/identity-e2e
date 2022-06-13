@@ -94,7 +94,7 @@ docker run -d -p 80:8080 backend-app:1.0
 
 ```
 
-## To veryfy the connectivity between frontend docker and backend load balancer 
+## To verify the connectivity between frontend docker and backend load balancer 
  
 ```
 telnet internal-backend-lb-1214632732.eu-west-2.elb.amazonaws.com 5000
